@@ -45,6 +45,9 @@ Thumbs.db
 *.cert
 *.crt
 secrets/
+postgres-secret.yml
+postgres/postgres-secret.yml
+techbleat-global-bank-backend/postgres/postgres-secret.yml
 
 # ─── Docker ───────────────────────────────────────────────────────────────────
 .dockerignore

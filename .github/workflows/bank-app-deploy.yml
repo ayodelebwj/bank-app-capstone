@@ -1,0 +1,97 @@
+name: Build and Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+  CLUSTER_NAME: banking-app-capstone
+  ECR_REPO: banking-app
+  envsecret: ${{ secrets.POSTGRES_SECRET }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ✅ Checkout code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ✅ Configure AWS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # ✅ Login to ECR
+      #- name: Login to Docker Hub
+       # uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER_ID }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # ✅ Build & Push Docker Image - Activity Service
+      - name: Build and Push Image Activity Service
+        run: |
+          docker build -t olaniyikolawole744/activity-service:2.0 -f activity-service/Dockerfile .
+          docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push olaniyikolawole744/activity-service:2.0
+
+      # ✅ Build & Push Docker Image - transaction Service
+      - name: Build and Push Image Transaction Service
+        run: |
+          docker build -t olaniyikolawole744/transaction-service:2.0 -f transaction-service/Dockerfile .
+          docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push olaniyikolawole744/transaction-service:2.0
+
+      # ✅ Build & Push Docker Image - user Service
+      - name: Build and Push Image User Service
+        run: |
+          docker build -t olaniyikolawole744/user-service:2.0 -f user-service/Dockerfile .
+          docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push olaniyikolawole744/user-service:2.0
+
+      # ✅ Build & Push Docker Image - frontend Service
+      - name: Build and Push Image Frontend App
+        run: |
+          docker build -t olaniyikolawole744/frontend-app:2.0 -f frontend-app/Dockerfile .
+          docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push olaniyikolawole744/frontend-app:2.0
+
+
+      # ✅ Install kubectl
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      # ✅ Update kubeconfig
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region $AWS_REGION \
+            --name $CLUSTER_NAME
+
+      # ✅ Create Ingress Controller
+      - name: Create Ingress Controller Nginx
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
+
+      # ✅ Deploy to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/
+
+      # ✅ Get Ingress Details
+      - name: Get Ingress Details
+        run: |
+          kubectl get ingress frontend-ingress -n default
