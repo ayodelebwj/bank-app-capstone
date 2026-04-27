@@ -41,28 +41,28 @@ jobs:
       # ✅ Build & Push Docker Image - Activity Service
       - name: Build and Push Image Activity Service
         run: |
-          docker build -t olaniyikolawole744/activity-service:2.0 -f activity-service/Dockerfile .
+          docker build -t olaniyikolawole744/activity-service:2.0 -f techbleat-global-bank-backend/activity-service/Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/activity-service:2.0
 
       # ✅ Build & Push Docker Image - transaction Service
       - name: Build and Push Image Transaction Service
         run: |
-          docker build -t olaniyikolawole744/transaction-service:2.0 -f transaction-service/Dockerfile .
+          docker build -t olaniyikolawole744/transaction-service:2.0 -f techbleat-global-bank-backend/transaction-service/Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/transaction-service:2.0
 
       # ✅ Build & Push Docker Image - user Service
       - name: Build and Push Image User Service
         run: |
-          docker build -t olaniyikolawole744/user-service:2.0 -f user-service/Dockerfile .
+          docker build -t olaniyikolawole744/user-service:2.0 -f techbleat-global-bank-backend/user-service/Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/user-service:2.0
 
       # ✅ Build & Push Docker Image - frontend Service
       - name: Build and Push Image Frontend App
         run: |
-          docker build -t olaniyikolawole744/frontend-app:2.0 -f frontend-app/Dockerfile .
+          docker build -t olaniyikolawole744/frontend-app:2.0 -f techbleat-global-bank-frontend/Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/frontend-app:2.0
 
