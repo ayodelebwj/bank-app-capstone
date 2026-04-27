@@ -74,7 +74,7 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
 
-      # ✅ Update kubeconfig
+      # ✅ Update kubeconfig...
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig \
