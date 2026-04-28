@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: olaniyikolawole744/frontend-bank-app:2.0
+          image: olaniyikolawole744/frontend-app:2.0
           ports:
             - containerPort: 3000
           envFrom:
