@@ -87,11 +87,6 @@ jobs:
             --region $AWS_REGION \
             --name $CLUSTER_NAME
 
-      # ✅ Create Ingress Controller
-      - name: Create Ingress Controller Nginx
-        run: |
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
-
       # ✅ Deploy to Kubernetes.....
       - name: Apply Kubernetes manifests
         run: |
