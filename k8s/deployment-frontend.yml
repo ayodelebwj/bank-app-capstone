@@ -69,7 +69,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: lennipsss.org
+    - host: www.lennipsss.org
       http:
         paths:
           - path: /
