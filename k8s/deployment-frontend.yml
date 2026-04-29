@@ -5,7 +5,7 @@ metadata:
 data:
   VITE_ACTIVITY_SERVICE_URL: "http://activity-service:8001"
   VITE_USER_SERVICE_URL: "http://user-service:8000"
-  VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
+  #VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
 ---
 apiVersion: apps/v1
 kind: Deployment
