@@ -23,6 +23,11 @@ spec:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_DB
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
