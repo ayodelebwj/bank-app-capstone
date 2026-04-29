@@ -58,7 +58,7 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/transaction-service:2.0
 
-      # ✅ Build & Push Docker Image - user Service
+      # ✅ Build & Push Docker Image - user Service.
       - name: Build and Push Image User Service
         run: |
           docker build -t olaniyikolawole744/user-service:2.0 -f techbleat-global-bank-backend/user-service/Dockerfile .
