@@ -2,7 +2,7 @@
 FROM node:18 AS builder
 
 WORKDIR /app
-COPY package*.json ./
+COPY techbleat-global-bank-frontend/package*.json ./
 RUN npm install
 
 COPY . .
