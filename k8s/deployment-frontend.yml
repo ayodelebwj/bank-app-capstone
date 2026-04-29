@@ -25,7 +25,7 @@ spec:
         - name: frontend-app
           image: olaniyikolawole744/frontend-app:2.0
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           envFrom:
             - configMapRef:
                 name: frontend-config
@@ -39,13 +39,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 5
 ---
@@ -58,7 +58,7 @@ spec:
     app: frontend-app
   ports:
     - port: 80
-      targetPort: 3000
+      targetPort: 80
       nodePort: 30007
   type: LoadBalancer
 ---
