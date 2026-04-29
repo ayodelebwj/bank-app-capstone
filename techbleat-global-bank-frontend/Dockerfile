@@ -2,7 +2,8 @@
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-COPY techbleat-global-bank-frontend/package*.json ./
+#COPY techbleat-global-bank-frontend/package*.json ./
+COPY techbleat-global-bank-frontend/ .
 RUN npm install --legacy-peer-deps
 
 COPY . .
