@@ -5,7 +5,7 @@ metadata:
 data:
   VITE_ACTIVITY_SERVICE_URL: "http://activity-service:8001"
   VITE_USER_SERVICE_URL: "http://user-service:8000"
-  #VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
+  VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,7 +25,7 @@ spec:
         - name: frontend-app
           image: olaniyikolawole744/frontend-app:2.0
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           envFrom:
             - configMapRef:
                 name: frontend-config
@@ -39,13 +39,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 3000
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
 ---
@@ -57,8 +57,8 @@ spec:
   selector:
     app: frontend-app
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 3000
+      targetPort: 3000
       nodePort: 30007
   type: LoadBalancer
 ---
@@ -78,4 +78,4 @@ spec:
               service:
                 name: frontend-app
                 port:
-                  number: 80
+                  number: 3000
