@@ -1,15 +1,16 @@
-# Build stage
-FROM node:20-alpine AS builder
+FROM node:20 AS builder
 
 WORKDIR /app
-#COPY techbleat-global-bank-frontend/package*.json ./
+
 COPY techbleat-global-bank-frontend/ .
+
+RUN rm -rf node_modules package-lock.json || true
+
 RUN npm install --legacy-peer-deps
 
-COPY . .
 RUN npm run build
 
-# Production stage
+
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
