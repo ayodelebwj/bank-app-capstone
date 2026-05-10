@@ -1,0 +1,4 @@
+tls:
+  - hosts:
+    - lennipsss.org
+    secretName: app-tls-secret

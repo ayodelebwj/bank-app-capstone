@@ -145,3 +145,12 @@ jobs:
         run: |
           kubectl apply -f k8s/cluster-issuer.yaml
 
+      # ✅ Deploy certificate to Kubernetes
+      - name: Apply certificate.yaml Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/certificate.yaml
+
+      # ✅ update ingress in Kubernetes
+      - name: Apply updateingres.yml Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/updateingres.yml
