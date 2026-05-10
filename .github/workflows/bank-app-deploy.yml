@@ -87,10 +87,45 @@ jobs:
             --region $AWS_REGION \
             --name $CLUSTER_NAME
 
-      # ✅ Deploy to Kubernetes
+      # ✅ Deploy secret to Kubernetes
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f k8s/
+          kubectl apply -f k8s/postgres-secret.yml
+
+      # ✅ Deploy to postgres-configmap.yml
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/postgres-configmap.yml
+
+      # ✅ Deploy to postgres db to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/statefulset-postgres.yml
+
+      # ✅ Deploy Redis to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deploymentredis.yml
+
+      # ✅ Deploy user service to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deploymentuser.yml
+
+      # ✅ Deploy activity service to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deploymentactivity.yml
+
+      # ✅ Deploy transaction service to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deploymenttransaction.yml
+
+      # ✅ Deploy frontend app to Kubernetes
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deployment-frontend.yml
 
       # ✅ Get Ingress Details
       - name: Get Ingress Details
