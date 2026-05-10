@@ -2,10 +2,10 @@ FROM node:20
 
 WORKDIR /app
 
-COPY techbleat-global-bank-frontend/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY techbleat-global-bank-frontend/. .
+COPY ./ .
 
 EXPOSE 3000
 
