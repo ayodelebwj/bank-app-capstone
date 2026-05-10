@@ -132,6 +132,11 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment-frontend.yml
 
+      # ✅ Remove cert-manager (if needed)
+      - name: remove cert manager.........................
+        run: |
+          helm uninstall cert-manager -n cert-manager
+
       # ✅ Get Ingress Details           kubectl get ingress frontend-ingress -n default
       - name: Get Ingress Details
         run: |
@@ -139,11 +144,6 @@ jobs:
           helm repo add jetstack https://charts.jetstack.io
           helm repo update
           helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace
-
-      # ✅ Remove cert-manager (if needed)
-      - name: remove cert manager.........................
-        run: |
-          helm uninstall cert-manager -n cert-manager
 
 
       # ✅ Deploy cluster issuer to Kubernetes
