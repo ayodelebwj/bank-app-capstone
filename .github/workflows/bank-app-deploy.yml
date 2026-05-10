@@ -65,7 +65,7 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push olaniyikolawole744/user-service:2.0
 
-      # ✅ Build & Push Docker Image - frontend Service
+      # ✅ Build & Push Docker Image - frontend Service.
       - name: Build and Push Image Frontend App
         run: |
           cd techbleat-global-bank-frontend
