@@ -11,7 +11,7 @@ echo "Creating cluster..."
 eksctl create cluster \
   --name $CLUSTER_NAME \
   --region $REGION \
-  --node-type t3.small \
+  --node-type t3.large \
   --nodes 2 \
   --managed \
   --with-oidc
