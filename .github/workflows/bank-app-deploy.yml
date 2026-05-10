@@ -73,9 +73,9 @@ jobs:
           rm -rf node_modules package-lock.json
           npm install 
           npm run build 
-          docker build -t olaniyikolawole744/frontend-app:2.0 -f Dockerfile .
+          docker build -t olaniyikolawole744/frontend-app:2.1 -f Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push olaniyikolawole744/frontend-app:2.0
+          docker push olaniyikolawole744/frontend-app:2.1
 
 
       # ✅ Install kubectl
