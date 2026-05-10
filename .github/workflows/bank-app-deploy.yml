@@ -68,6 +68,7 @@ jobs:
       # ✅ Build & Push Docker Image - frontend Service
       - name: Build and Push Image Frontend App
         run: |
+          ls -la techbleat-global-bank-frontend/
           rm -rf node_modules techbleat-global-bank-frontend/package-lock.json
           npm install techbleat-global-bank-frontend/
           npm run build techbleat-global-bank-frontend/
