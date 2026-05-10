@@ -68,6 +68,10 @@ metadata:
   name: frontend-ingress
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - lennipsss.org
+      secretName: app-tls-secret
   rules:
     - host: www.lennipsss.org
       http:

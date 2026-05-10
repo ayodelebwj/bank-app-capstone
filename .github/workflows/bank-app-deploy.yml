@@ -156,10 +156,4 @@ jobs:
         run: |
           kubectl apply -f k8s/certificate.yaml
 
-      # ✅ update ingress in Kubernetes
-      - name: Apply updateingres.yml Kubernetes manifests
-        run: |
-          kubectl apply -f k8s/updateingres.yml
-
-
           
