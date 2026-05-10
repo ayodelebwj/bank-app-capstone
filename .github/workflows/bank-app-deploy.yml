@@ -133,9 +133,9 @@ jobs:
           kubectl apply -f k8s/deployment-frontend.yml
 
       # ✅ Remove cert-manager (if needed)
-      - name: remove cert manager.........................
-        run: |
-          helm uninstall cert-manager -n cert-manager
+      #- name: remove cert manager.........................
+        # run: |
+        #  helm uninstall cert-manager -n cert-manager
 
       # ✅ Get Ingress Details           kubectl get ingress frontend-ingress -n default
       - name: Get Ingress Details
