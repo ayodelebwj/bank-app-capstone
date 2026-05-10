@@ -140,6 +140,12 @@ jobs:
           helm repo update
           helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace
 
+      # ✅ Remove cert-manager (if needed)
+      - name: remove cert manager.........................
+        run: |
+          helm uninstall cert-manager -n cert-manager
+
+
       # ✅ Deploy cluster issuer to Kubernetes
       - name: Apply cluster-issuer.yaml Kubernetes manifests
         run: |
@@ -154,3 +160,6 @@ jobs:
       - name: Apply updateingres.yml Kubernetes manifests
         run: |
           kubectl apply -f k8s/updateingres.yml
+
+
+          
