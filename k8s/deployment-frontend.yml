@@ -57,9 +57,8 @@ spec:
   selector:
     app: frontend-app
   ports:
-    - port: 443
+    - port: 80
       targetPort: 3000
-      nodePort: 30007
   type: LoadBalancer
 ---
 apiVersion: networking.k8s.io/v1
@@ -82,4 +81,4 @@ spec:
               service:
                 name: frontend-app
                 port:
-                  number: 3000
+                  number: 80
