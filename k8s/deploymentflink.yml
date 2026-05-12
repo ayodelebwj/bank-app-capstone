@@ -79,11 +79,11 @@ spec:
               mountPath: /opt/flink/checkpoints
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
               cpu: "500m"
-              memory: "256Mi"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
       volumes:
         - name: flink-storage
           persistentVolumeClaim:
@@ -97,6 +97,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: gp2
   resources:
     requests:
       storage: 20Gi

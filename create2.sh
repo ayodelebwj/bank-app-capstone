@@ -14,4 +14,6 @@ helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
   --create-namespace \
   --set controller.service.type=LoadBalancer
 
+aws s3 mb s3://banking-app-iceberg-warehouse --region $REGION || true
+
 kubectl get svc -n ingress-nginx

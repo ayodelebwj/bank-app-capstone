@@ -72,11 +72,10 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: kafka-storage
-
       spec:
         accessModes:
           - ReadWriteOnce
-
+        storageClassName: gp2
         resources:
           requests:
             storage: 20Gi

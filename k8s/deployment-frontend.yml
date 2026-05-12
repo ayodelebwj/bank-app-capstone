@@ -3,9 +3,12 @@ kind: ConfigMap
 metadata:
   name: frontend-config
 data:
-  VITE_ACTIVITY_SERVICE_URL: "http://activity-service:8001"
-  VITE_USER_SERVICE_URL: "http://user-service:8000"
-  VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
+  VITE_ACTIVITY_SERVICE_URL: "https://www.lennipsss.org/api/activity"
+  VITE_USER_SERVICE_URL: "https://www.lennipsss.org/api/users"
+  VITE_TRANSACTION_SERVICE_URL: "https://www.lennipsss.org/api/transactions"
+  #VITE_ACTIVITY_SERVICE_URL: "http://activity-service:8001"
+  #VITE_USER_SERVICE_URL: "http://user-service:8000"
+  #VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -84,3 +87,24 @@ spec:
                 name: frontend-app
                 port:
                   number: 80
+          - path: /api/users
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 8000
+          - path: /api/transactions
+            pathType: Prefix
+            backend:
+              service:
+                name: transaction-service
+                port:
+                  number: 8080
+          - path: /api/activity
+            pathType: Prefix
+            backend:
+              service:
+                name: activity-service
+                port:
+                  number: 8001

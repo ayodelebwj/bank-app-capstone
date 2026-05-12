@@ -8,8 +8,6 @@ echo "Deleting old cluster if it exists..."
 
 eksctl delete cluster --name $CLUSTER_NAME --region $REGION || true
 
-aws s3 mb s3://banking-app-iceberg-warehouse --region $REGION || true
-
 echo "Creating cluster..."
 eksctl create cluster \
   --name $CLUSTER_NAME \
@@ -37,16 +35,3 @@ eksctl create addon \
   --name aws-ebs-csi-driver
 
 eksctl utils migrate-to-pod-identity
-
-sleep 90
-
-echo "Installing ingress..."
-helm repo list | grep bitnami && helm repo remove bitnami || true
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx || true
-helm repo update
-helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace \
-  --set controller.service.type=LoadBalancer
-
-sleep 90
