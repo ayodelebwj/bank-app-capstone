@@ -5,7 +5,10 @@ CLUSTER_NAME=banking-app-capstone
 REGION=us-east-1
 
 echo "Deleting old cluster if it exists..."
+
 eksctl delete cluster --name $CLUSTER_NAME --region $REGION || true
+
+aws s3 mb s3://banking-app-iceberg-warehouse --region $REGION || true
 
 echo "Creating cluster..."
 eksctl create cluster \

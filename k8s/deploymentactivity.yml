@@ -24,7 +24,7 @@ spec:
                   name: postgres-secret
                   key: POSTGRES_DATABASE_URL
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: "kafka:29092"
+              value: "kafka:9092"
             - name: FRONTEND_ORIGIN
               value: "http://localhost:3000"
           resources:
