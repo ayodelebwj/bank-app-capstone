@@ -70,8 +70,8 @@ jobs:
         run: |
           cd techbleat-global-bank-frontend
           rm -rf node_modules package-lock.json
-          VITE_API_BASE=${{ secrets.VITE_API_BASE }} npm run build
           npm install 
+          VITE_API_BASE=${{ secrets.VITE_API_BASE }} npm run build
           npm run build 
           docker build -t olaniyikolawole744/frontend-app:2.1 -f Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
