@@ -127,7 +127,7 @@ jobs:
         run: |
           kubectl apply -f k8s/deploymenttransaction.yml
 
-      # ✅ Deploy frontend app to Kubernetes.
+      # ✅ Deploy frontend app to Kubernetes..
       - name: Apply Kubernetes manifests
         run: |
           kubectl apply -f k8s/deployment-frontend.yml
