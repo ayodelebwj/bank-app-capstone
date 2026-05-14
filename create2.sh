@@ -14,6 +14,10 @@ helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
   --create-namespace \
   --set controller.service.type=LoadBalancer
 
+aws iam attach-role-policy \
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  --policy-arn arn:aws:iam::380029909039:policy/iceberg-s3-policy
+
 aws s3 mb s3://banking-app-iceberg-warehouse --region $REGION || true
 
 kubectl get svc -n ingress-nginx

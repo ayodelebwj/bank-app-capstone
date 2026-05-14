@@ -88,21 +88,21 @@ spec:
                 name: frontend-app
                 port:
                   number: 80
-          - path: /api/users
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: user-service
                 port:
                   number: 8000
-          - path: /api/transactions
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: transaction-service
                 port:
                   number: 8080
-          - path: /api/activity
+          - path: /api
             pathType: Prefix
             backend:
               service:
