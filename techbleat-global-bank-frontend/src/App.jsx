@@ -95,7 +95,7 @@ export default function TechbleatGlobalBankCustomerApp() {
 
   async function loadUsers() {
     try {
-      const data = await api(`${USER_API}/users`);
+      const data = await api(`${USER_API}`);
       setUsers(Array.isArray(data) ? data : []);
     } catch (error) {
       setMessage({ type: "error", text: error.message || "Unable to load users" });
@@ -153,7 +153,7 @@ export default function TechbleatGlobalBankCustomerApp() {
     }
 
     try {
-      await api(`${USER_API}/users`, {
+      await api(`${USER_API}`, {
         method: "POST",
         body: JSON.stringify(payload),
       });
