@@ -132,10 +132,10 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment-frontend.yml
 
-      # ✅ Remove cert-manager (if needed)
-      #- name: remove cert manager.........................
-        #run: |
-          #helm uninstall cert-manager -n cert-manager
+       #✅ Remove cert-manager (if needed)
+      - name: remove cert manager.........................
+        run: |
+          helm uninstall cert-manager -n cert-manager
 
       # ✅ Get Ingress Details           kubectl get ingress frontend-ingress -n default
       - name: Get Ingress Details
@@ -145,6 +145,20 @@ jobs:
           helm repo update
           helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace
 
+      # ✅ Deploy configmap iceberg to Kubernetes
+      - name: Apply configmap-iceberg.yaml Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/configmap-iceberg.yml    
+          
+      # ✅ Deploy deployment flink to Kubernetes
+      - name: Apply deployment flink.yaml Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deploymentflink.yml
+      
+      # ✅ Deploy statefulset kafka to Kubernetes
+      - name: Apply statefulset-kafka.yaml Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/statefulset-kafka.yml
 
       # ✅ Deploy cluster issuer to Kubernetes
       - name: Apply cluster-issuer.yaml Kubernetes manifests
