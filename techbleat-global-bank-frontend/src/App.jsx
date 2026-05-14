@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
-const USER_API = `${API_BASE}`;
-const TX_API = `${API_BASE}`;
-const ACTIVITY_API = `${API_BASE}`;
+const USER_API = `${API_BASE}/users`;
+const TX_API = `${API_BASE}/transactions`;
+const ACTIVITY_API = `${API_BASE}/activities`;
 
 const currency = new Intl.NumberFormat("en-GB", {
   style: "currency",
