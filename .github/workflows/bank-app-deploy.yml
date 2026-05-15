@@ -54,7 +54,7 @@ jobs:
         run: |
           docker build -t olaniyikolawole744/mypostgres-db:2.0 -f techbleat-global-bank-backend/db-init/Dockerfile .
           docker login -u ${{ secrets.DOCKER_USER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push olaniyikolawole744/postgres-db:2.0
+          docker push olaniyikolawole744/mypostgres-db:2.0
 
       # ✅ Build & Push Docker Image - Activity Service.....
       - name: Build and Push Image Activity Service
