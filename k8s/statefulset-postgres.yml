@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:15
+          image: olaniyikolawole744/postgres-db:2.0
           ports:
             - containerPort: 5432
           envFrom:
