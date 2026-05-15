@@ -1,9 +1,14 @@
-name: Build and Deploy to EKS
+name: Build and Deploy to EKS v2
 
 on:
   push:
     branches:
       - main
+
+
+concurrency:
+  group: eks-deploy
+  cancel-in-progress: true
 
 env:
   AWS_REGION: us-east-1
