@@ -105,7 +105,7 @@ jobs:
       # ✅ Deploy to postgres-configmap.yml
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f k8s/postgres-configmap.yml
+          kubectl apply -f k8s/configmap-postgres.yml
 
       # ✅ create sql tables============================
       #- name: create sql tables

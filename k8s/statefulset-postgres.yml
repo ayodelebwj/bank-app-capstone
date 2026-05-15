@@ -24,13 +24,7 @@ spec:
           env:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
-          volumes:
-            - name: init-sql
-              configMap:
-                name: postgres-init-sql
           volumeMounts:
-            - name: init-sql
-              mountPath: /docker-entrypoint-initdb.d
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
