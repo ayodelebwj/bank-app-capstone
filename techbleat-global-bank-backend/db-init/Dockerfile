@@ -1,2 +1,2 @@
 FROM postgres:15
-COPY init.sql /docker-entrypoint-initdb.d/
+COPY techbleat-global-bank-backend/db-init/init.sql /docker-entrypoint-initdb.d/
