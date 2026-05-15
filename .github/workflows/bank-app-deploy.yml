@@ -102,6 +102,13 @@ jobs:
         run: |
           kubectl apply -f k8s/postgres-configmap.yml
 
+      # ✅ create sql tables============================
+      - name: create sql tables
+        run: |
+          kubectl create configmap postgres-init-sql --from-file=init.sql=k8s/init.sql
+
+
+
       # ✅ Deploy to postgres db to Kubernetes
       - name: Apply Kubernetes manifests
         run: |
