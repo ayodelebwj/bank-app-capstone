@@ -6,7 +6,7 @@ data:
   #VITE_ACTIVITY_SERVICE_URL: "https://www.lennipsss.org/api/activity"
   #VITE_USER_SERVICE_URL: "https://www.lennipsss.org/api/users"
   #VITE_TRANSACTION_SERVICE_URL: "https://www.lennipsss.org/api/transactions"
-  VITE_API_BASE: "https://www.lennipsss.org/api"
+  VITE_API_BASE: "https://www.lennipsss.org"
   #VITE_ACTIVITY_SERVICE_URL: "http://activity-service:8001"
   #VITE_USER_SERVICE_URL: "http://user-service:8000"
   #VITE_TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
@@ -88,21 +88,21 @@ spec:
                 name: frontend-app
                 port:
                   number: 80
-          - path: /api/users
+          - path: /users
             pathType: Prefix
             backend:
               service:
                 name: user-service
                 port:
                   number: 8000
-          - path: /api/transactions
+          - path: /transactions
             pathType: Prefix
             backend:
               service:
                 name: transaction-service
                 port:
                   number: 8080
-          - path: /api/activities
+          - path: /activities
             pathType: Prefix
             backend:
               service:
