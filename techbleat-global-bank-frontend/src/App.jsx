@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
-const USER_API = `${API_BASE}/users`;
-const TX_API = `${API_BASE}/transactions`;
-const ACTIVITY_API = `${API_BASE}/activities`;
+const USER_API = `${API_BASE}`;
+const TX_API = `${API_BASE}`;
+const ACTIVITY_API = `${API_BASE}`;
 
 const currency = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -95,7 +95,7 @@ export default function TechbleatGlobalBankCustomerApp() {
 
   async function loadUsers() {
     try {
-      const data = await api(`${USER_API}`);
+      const data = await api(`${USER_API}/users`);
       setUsers(Array.isArray(data) ? data : []);
     } catch (error) {
       setMessage({ type: "error", text: error.message || "Unable to load users" });
@@ -153,7 +153,7 @@ export default function TechbleatGlobalBankCustomerApp() {
     }
 
     try {
-      await api(`${USER_API}`, {
+      await api(`${USER_API}/users`, {
         method: "POST",
         body: JSON.stringify(payload),
       });
