@@ -114,11 +114,6 @@ jobs:
         run: |
           kubectl apply -f k8s/configmap-postgres.yml
 
-      # ✅ create sql tables============================
-      #- name: create sql tables
-        #run: |
-          #kubectl create configmap postgres-init-sql --from-file=init.sql=k8s/init.sql
-
       # ✅ Deploy to postgres db to Kubernetes
       - name: Apply Kubernetes manifests
         run: |
@@ -150,9 +145,9 @@ jobs:
           kubectl apply -f k8s/deployment-frontend.yml
 
        #✅ Remove cert-manager (if needed)
-      - name: remove cert manager.........................
-        run: |
-          helm uninstall cert-manager -n cert-manager
+      #- name: remove cert manager.........................
+        #run: |
+          #helm uninstall cert-manager -n cert-manager
 
       # ✅ Get Ingress Details           kubectl get ingress frontend-ingress -n default
       - name: Get Ingress Details
